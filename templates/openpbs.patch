@@ -1,0 +1,73 @@
+From b726e1bc9614f496440c1c26d7a563081fb7578e Mon Sep 17 00:00:00 2001
+From: Michael Weiser <michael.weiser@eviden.com>
+Date: Wed, 14 May 2025 13:44:35 +0200
+Subject: [PATCH 3/3] SSH parameters
+
+---
+ templates/openpbs.txt | 43 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+
+diff --git a/templates/openpbs.txt b/templates/openpbs.txt
+index 70b5a71..a54f26c 100644
+--- a/templates/openpbs.txt
++++ b/templates/openpbs.txt
+@@ -45,6 +45,13 @@ Autoscale = $Autoscale
+         adauth.ad_delegation_account=$ad_delegation_account
+         adauth.ad_delegation_passwd=$ad_delegation_passwd
+ 
++        ssh.host_key.rsa.private=$ssh_host_key_rsa_private
++        ssh.host_key.rsa.public=$ssh_host_key_rsa_public
++        ssh.host_key.ecdsa.private=$ssh_host_key_ecdsa_private
++        ssh.host_key.ecdsa.public=$ssh_host_key_ecdsa_public
++        ssh.host_key.ed25519.private=$ssh_host_key_ed25519_private
++        ssh.host_key.ed25519.public=$ssh_host_key_ed25519_public
++
+         # For fast spin-up after Deallocate, force an immediate re-converge on boot
+         cyclecloud.converge_on_boot = true
+ 
+@@ -288,6 +295,42 @@ Order = 10
+         Description = Resource ID of reverse lookup zone for PTR record update
+         DefaultValue = ""
+ 
++        [[[parameter ssh_host_key_rsa_private]]]
++        Label = RSA private host key
++        Description = custom RSA host key (private)
++        DefaultValue = ""
++        ParameterType = Text
++
++        [[[parameter ssh_host_key_rsa_public]]]
++        Label = RSA public host key
++        Description = custom RSA host key (public)
++        DefaultValue = ""
++        ParameterType = Text
++
++        [[[parameter ssh_host_key_ecdsa_private]]]
++        Label = ECDSA private host key
++        Description = custom ECDSA host key (private)
++        DefaultValue = ""
++        ParameterType = Text
++
++        [[[parameter ssh_host_key_ecdsa_public]]]
++        Label = ECDSA public host key
++        Description = custom ECDSA host key (public)
++        DefaultValue = ""
++        ParameterType = Text
++
++        [[[parameter ssh_host_key_ed25519_private]]]
++        Label = ED25519 private host key
++        Description = custom ED25519 host key (private)
++        DefaultValue = ""
++        ParameterType = Text
++
++        [[[parameter ssh_host_key_ed25519_public]]]
++        Label = ED25519 public host key
++        Description = custom ED25519 host key (public)
++        DefaultValue = ""
++        ParameterType = Text
++
+     [[parameters Active Directory]]
+         [[[parameter ad_join]]]
+         Label = Join AD?
+-- 
+2.47.2
+
